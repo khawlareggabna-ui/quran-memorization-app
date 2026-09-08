@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تطبيق حفظ القرآن الكريم</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📖 تطبيق حفظ القرآن الكريم</h1>
+            <p>تدرب على حفظك واختبر نفسك</p>
+        </header>
+
+        <main>
+            <!-- قسم اختيار السورة -->
+            <section class="chapter-selection">
+                <h2>اختر السورة</h2>
+                <input type="number" id="chapterInput" min="1" max="114" placeholder="أدخل رقم السورة (1-114)">
+                <button onclick="loadChapter()" class="btn btn-primary">تحميل</button>
+            </section>
+
+            <!-- عرض السورة -->
+            <section class="chapter-display" id="chapterSection" style="display: none;">
+                <h2 id="chapterName"></h2>
+                <div id="versesContainer" class="verses-container"></div>
+            </section>
+
+            <!-- قسم الاختبار -->
+            <section class="test-section" id="testSection" style="display: none;">
+                <h2>اختبر حفظك</h2>
+                
+                <div class="test-controls">
+                    <label for="startVerse">من الآية:</label>
+                    <input type="number" id="startVerse" min="1" placeholder="رقم الآية الأولى">
+                    
+                    <label for="endVerse">إلى الآية:</label>
+                    <input type="number" id="endVerse" min="1" placeholder="رقم الآية الأخيرة">
+                    
+                    <button onclick="startTest()" class="btn btn-success">ابدأ الاختبار</button>
+                </div>
+
+                <div class="test-mode" id="testMode" style="display: none;">
+                    <div class="verse-display" id="verseDisplay"></div>
+                    
+                    <div class="user-input-section">
+                        <label>أكمل الآية:</label>
+                        <textarea id="userAnswer" placeholder="اكتب الآية التي تحفظها" dir="rtl"></textarea>
+                        
+                        <div class="buttons">
+                            <button onclick="checkAnswer()" class="btn btn-success">تحقق</button>
+                            <button onclick="nextVerse()" class="btn btn-primary">الآية التالية</button>
+                            <button onclick="endTest()" class="btn btn-danger">إنهاء الاختبار</button>
+                        </div>
+                    </div>
+
+                    <!-- نتائج التحقق -->
+                    <div class="result" id="resultBox" style="display: none;">
+                        <div id="resultContent"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ملخص النتائج -->
+            <section class="results-summary" id="resultsSummary" style="display: none;">
+                <h2>ملخص الاختبار</h2>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="label">إجمالي الآيات:</span>
+                        <span class="value" id="totalVerses">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">الإجابات الصحيحة:</span>
+                        <span class="value correct" id="correctAnswers">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">الإجابات الخاطئة:</span>
+                        <span class="value wrong" id="wrongAnswers">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">النسبة المئوية:</span>
+                        <span class="value percentage" id="percentage">0%</span>
+                    </div>
+                </div>
+
+                <div class="mistakes-review" id="mistakesReview"></div>
+
+                <button onclick="resetApp()" class="btn btn-primary">اختبر سورة أخرى</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="quran-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
